@@ -9,12 +9,12 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Plus, Star, BookOpen, Send, RefreshCw } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useAuth, getUserBooks } from "@/lib/auth-context"
+import { useAuth, getUserBooks, Book } from "@/lib/auth-context"
 
 export default function DashboardPage() {
   const { user } = useAuth()
   const router = useRouter()
-  const [userBooks, setUserBooks] = useState([])
+  const [userBooks, setUserBooks] = useState<Book[]>([])
   const [receivedRequests] = useState([
     {
       id: 1,
