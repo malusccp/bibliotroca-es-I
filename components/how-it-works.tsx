@@ -1,49 +1,45 @@
-import { Camera, Search, Handshake } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+"use client"
 
-export function HowItWorks() {
+import { BookOpen, Users, RefreshCw, ArrowRight } from "lucide-react"
+
+export default function HowItWorks() {
   const steps = [
     {
-      icon: Camera,
-      title: "1. Cadastre seus livros",
-      description: "Tire uma foto, descreva o estado e disponibilize para a comunidade.",
+      icon: BookOpen,
+      title: "Cadastre",
+      description: "Adicione seus livros à plataforma com fotos e descrições.",
     },
     {
-      icon: Search,
-      title: "2. Encontre sua próxima leitura",
-      description: "Navegue pelo acervo de outros usuários e solicite uma troca.",
+      icon: Users,
+      title: "Conecte",
+      description: "Encontre leitores interessados nos seus livros.",
     },
     {
-      icon: Handshake,
-      title: "3. Combine a entrega",
-      description: "Use nosso chat para combinar a troca em um local público próximo a você.",
+      icon: RefreshCw,
+      title: "Troque",
+      description: "Combine trocas e comece a ler novos livros.",
     },
   ]
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl text-balance">
-            Trocar é fácil e rápido
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Em poucos passos você já estará trocando livros com a comunidade
-          </p>
-        </div>
+    <section className="py-12 md:py-20 px-4 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">Como Funciona</h2>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {steps.map((step, index) => (
-            <Card key={index} className="border-2 hover:border-primary/50 transition-colors">
-              <CardContent className="pt-8 pb-8 text-center">
-                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <step.icon className="h-8 w-8 text-primary" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            return (
+              <div key={index} className="flex flex-col items-center text-center">
+                <div className="bg-primary/10 rounded-full p-6 mb-4 w-24 h-24 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                  <Icon className="h-12 w-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 className="text-xl font-semibold text-foreground mb-2">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+                {index < steps.length - 1 && <ArrowRight className="h-6 w-6 text-primary mt-6 md:hidden" />}
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -3,15 +3,14 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { AuthProvider } from "@/lib/auth-context"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  // <CHANGE> Updated metadata for BiblioTroca
-  title: "BiblioTroca - Troque livros e renove sua estante",
-  description:
-    "A maior comunidade de troca de livros do Brasil. Renove sua estante sem gastar nada. Leitura sustentável e economia circular.",
+  title: "BiblioTroca - Troque Livros Online",
+  description: "Plataforma de troca de livros. Conecte-se com leitores, troque seus livros favoritos e economize.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -40,8 +39,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <AuthProvider>
+          {children}
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   )
